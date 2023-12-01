@@ -92,6 +92,7 @@ class BinarySearchTree {
         if (!node.right && !node.left) {
           return null;
         } else if (!node.right) {
+          node = node.left;
           return node;
         } else if (!node.left) {
           node = node.right;
@@ -99,13 +100,13 @@ class BinarySearchTree {
         } else {
           let maxFromLeft = node.left;
 
-          while (maxFromLeft.rught) {
+          while (maxFromLeft.right) {
             maxFromLeft = maxFromLeft.right;
           }
 
           node.data = maxFromLeft.data;
 
-          node.left = removeValue(node.right, maxFromLeft);
+          node.left = removeValue(node.left, maxFromLeft.data);
 
           return node;
         } 
