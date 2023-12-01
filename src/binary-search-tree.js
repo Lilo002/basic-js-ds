@@ -1,33 +1,98 @@
 const { NotImplementedError } = require('../extensions/index.js');
-
 const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
+
 class BinarySearchTree {
+  constructor() {
+    this.rootValue = null;
+  }
 
   root() {
-    return this.root = null;
+    if (!this.rootValue) {
+      return null;
+    }
+    return this.rootValue;
   }
 
   add(value) {
     const node = new Node(value);
-    if (!this.root) {
-      this.root = node;
+    if (!this.rootValue) {
+      this.rootValue = node;
       return;
+    }
+
+    let curNode = this.rootValue;
+    console.log(value)
+    while (curNode) {
+      if (curNode.data === node.data) {
+        return;
+      }
+      if (curNode.data > node.data) {
+        if (!curNode.left) {
+          curNode.left = node;
+          return;
+        }
+        curNode = curNode.left;
+      } else {
+        if (!curNode.right) {
+          curNode.right = node;
+          return;
+        }
+        curNode = curNode.right;
+      }
     }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(value) {
+
+    return searchNode(this.rootValue, value);
+
+    function searchNode(node, data) {
+      if (!node) return false;
+
+      if (data === node.data) return true;
+
+      if (data < node.data) {
+        return searchNode(node.left, value);
+      } else {
+        return searchNode(node.right, value);
+      }
+    }
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(value) {
+    return searchNode(this.rootValue, value);
+
+    function searchNode(node, data) {
+      if (!node) return null;
+
+      if (data === node.data) return node;
+
+      if (data < node.data) {
+        return searchNode(node.left, value);
+      } else {
+        return searchNode(node.right, value);
+      }
+    }
+
+
+    /* while (curNode) {
+      if (value === curNode.data) {
+        findedNode = curNode;
+        console.log(findedNode)
+        break;
+      }
+      if (value < curNode.data) {
+        curNode = curNode.left;
+      } else if (value > curNode.data) {
+        curNode = curNode.right;
+      }
+    }
+    return findedNode; */
   }
 
   remove(/* data */) {
