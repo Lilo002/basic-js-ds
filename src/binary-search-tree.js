@@ -65,34 +65,7 @@ class BinarySearchTree {
   }
 
   find(value) {
-    return searchNode(this.rootValue, value);
-
-    function searchNode(node, data) {
-      if (!node) return null;
-
-      if (data === node.data) return node;
-
-      if (data < node.data) {
-        return searchNode(node.left, value);
-      } else {
-        return searchNode(node.right, value);
-      }
-    }
-
-
-    /* while (curNode) {
-      if (value === curNode.data) {
-        findedNode = curNode;
-        console.log(findedNode)
-        break;
-      }
-      if (value < curNode.data) {
-        curNode = curNode.left;
-      } else if (value > curNode.data) {
-        curNode = curNode.right;
-      }
-    }
-    return findedNode; */
+    
   }
 
   remove(/* data */) {
