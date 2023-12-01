@@ -28,9 +28,12 @@ class Queue {
       this.queue = new ListNode(value);
       return;
     }
-    let item = this.queue.next;
+    let item = this.queue;
+
+    setValue(value);
+
     function setValue(value) {
-       if (!item) {
+       if (!item.next) {
         item.next = new ListNode(value);
        } else {
         item = item.next;
@@ -41,7 +44,9 @@ class Queue {
   }
 
   dequeue() {
-    
+    let itemValue = this.queue.value;
+    this.queue = this.queue.next;
+    return itemValue;
   }
 }
 
