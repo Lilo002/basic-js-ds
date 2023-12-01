@@ -86,8 +86,13 @@ class BinarySearchTree {
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return findMin(this.rootValue);
+
+    function findMin(node) {
+      if (!node.left) return node.data;
+
+      if (node.left) return findMin(node.left);
+    }
   }
 
   max() {
