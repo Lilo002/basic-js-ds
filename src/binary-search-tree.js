@@ -65,7 +65,19 @@ class BinarySearchTree {
   }
 
   find(value) {
-    
+    return searchNode(this.rootValue, value);
+
+    function searchNode(node, data) {
+      if (!node) return null;
+
+      if (data === node.data) return node;
+
+      if (data < node.data) {
+        return searchNode(node.left, value);
+      } else {
+        return searchNode(node.right, value);
+      }
+    }
   }
 
   remove(/* data */) {
