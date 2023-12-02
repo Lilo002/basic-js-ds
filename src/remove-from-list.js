@@ -22,27 +22,31 @@ const { ListNode } = require('../extensions/list-node.js');
  *   }
  * }
  */
-function removeKFromList(l, k ) {
-  let startlist = l;
-  let cur = l;
-  let prev = null;
-  while (cur) {
-    if (cur.value === k) {
-      if(!prev) {
-        cur = cur.next;
-      } else {
-        startlist.next = prev;
-        prev.next = cur.next;
-        cur = cur.next;
-      }
-    } else {
-      startlist.next = prev;
-      prev = cur;
-      cur = cur.next;
+
+function convertArrayToList(arr) {
+  return arr.reverse().reduce((acc, cur) => {
+    if (acc) {
+      const node = new ListNode(cur);
+      node.next = acc;
+      return node;
     }
+
+    return new ListNode(cur);
+  }, null);
+}
+
+function convertListToArray(list) {
+  const arr = [];
+  let cur = list;
+  while (cur) {
+    arr.push(cur.value);
+    cur = cur.next;
   }
-  startlist.next = cur;
-  return startlist;
+  return arr;
+}
+
+function removeKFromList(l, k ) {
+  return convertArrayToList(convertListToArray(l).filter((item) => item !== k));
 }
 
 module.exports = {
